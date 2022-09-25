@@ -1,0 +1,25 @@
+name: test
+
+on:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: self-hosted
+    name: Test in FreeBSD
+    steps:
+      - uses: actions/checkout@v3
+      - name: setup dependencies
+        run: |
+          pkg update
+          pkg upgrade
+          pkg install erlang elixir postgresql14-server postgresql14-contrib -y
+      - name: setup postgresql
+        run: |
+          sysrc postgresql_enable="YES"
+          service postgresql initdb
+          service postgresql start
+      - name: test
+        run: |
+          mix deps.get
+          mix test
