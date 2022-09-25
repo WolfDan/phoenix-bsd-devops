@@ -21,6 +21,8 @@ jobs:
           service postgresql start
       - name: setup hex
         run: mix local.hex --force
+      - name: setup rebar3
+        run: mix local.rebar --force
       - name: setup dependencies
         run: mix deps.get
       - name: test
