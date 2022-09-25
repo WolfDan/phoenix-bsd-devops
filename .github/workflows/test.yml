@@ -20,7 +20,7 @@ jobs:
           service postgresql initdb
           service postgresql start
       - name: setup hex
-        run: mix local.hex
+        run: mix local.hex --force
       - name: setup dependencies
         run: mix deps.get
       - name: test
