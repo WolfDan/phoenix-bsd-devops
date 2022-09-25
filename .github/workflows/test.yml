@@ -13,7 +13,7 @@ jobs:
         run: |
           pkg update
           pkg upgrade
-          pkg install erlang elixir postgresql14-server postgresql14-contrib -y
+          pkg install -y erlang elixir postgresql14-server postgresql14-contrib
       - name: setup postgresql
         run: |
           sysrc postgresql_enable="YES"
