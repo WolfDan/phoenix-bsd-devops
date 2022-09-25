@@ -19,7 +19,9 @@ jobs:
           sysrc postgresql_enable="YES"
           service postgresql initdb
           service postgresql start
+      - name: setup hex
+        run: mix local.hex
+      - name: setup dependencies
+        run: mix deps.get
       - name: test
-        run: |
-          mix deps.get
-          mix test
+        run: mix test
